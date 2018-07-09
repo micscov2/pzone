@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Catalogue</title>
+    <script src="angular.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body ng-app="myApp">
+    <h1>Catalogue</h1>
+    <div ng-controller="MainController">
+        <input type="text" ng-model="textData" /><button ng-click="searchClicked()">search!</button>
+        <br />
+        <p ng-bind="resultRecv1"></p>
+        <p ng-bind="resultRecv2"></p>
+    </div>
+</body>
+</html>
