@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', []);
+//var myApp = angular.module('myApp');
 
 // Angular Js lessons
 // ng-bind binds $scope -> view
@@ -7,7 +7,7 @@ var myApp = angular.module('myApp', []);
 myApp.controller('MainController', ['$scope', '$http', function($scope, $http) {
     // Initialize undefined variables
     $scope.textData = "";
-
+    $scope.pzk = "pzk";
     var successResponseHandler = function (response) {
         $scope.resultRecv1 = response.data.split(":->:")[0]
         $scope.resultRecv2 = response.data.split(":->:")[1]
@@ -22,4 +22,9 @@ myApp.controller('MainController', ['$scope', '$http', function($scope, $http) {
         $http.get("http://pzone:7880/catalogue/search/" + userInput)
              .then(successResponseHandler, errorResponseHandler);
     }
+}]);
+
+
+myApp.controller('Other1Controller', ['$scope', function($scope) {
+    $scope.pzk1 = "pzk1_other1";
 }]);
