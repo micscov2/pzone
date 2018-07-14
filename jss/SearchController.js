@@ -8,6 +8,7 @@ myApp.controller('SearchController', ['$scope', '$http', function($scope, $http)
     // Initialize undefined variables
     $scope.textData = "";
     $scope.records = [];
+    $scope.totalRecords = 0;
     var successResponseHandler = function(response) {
         // $scope.records = [response.data.split(":->:")];
         $scope.records = [];
@@ -19,6 +20,7 @@ myApp.controller('SearchController', ['$scope', '$http', function($scope, $http)
             filename = response.data[property];
             $scope.records.push(filename + " -> " + property);
         }
+        $scope.totalRecords = $scope.records.length;
         // $scope.resultRecv2 = response.data.split(":->:")[1]
         // Check why x, y = a.split("") doesn't work
     };
