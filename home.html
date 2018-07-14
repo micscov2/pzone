@@ -1,21 +1,38 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
     <title>Catalogue</title>
-    <script src="angular.js"></script>
-    <script src="angular-route.js"></script>
-    <script src="app.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="script.js"></script>
-    <link rel="stylesheet" href="bootstrap.min.css" />
+    <script src="externals_deps/angular.js"></script>
+    <script src="externals_deps/angular-route.js"></script>
+    <script src="externals_deps/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="externals_deps/bootstrap.min.css" />
+    <script src="jss/app.js"></script>
+    <script src="jss/SearchController.js"></script>
+    <script src="jss/CreateNewController.js"></script>
+    <script src="jss/BookmarksController.js"></script>
+    <script src="jss/TopHitsController.js"></script>
     <link rel="stylesheet" href="style.css" />
 </head>
 
 <body ng-app="myApp">
     <h1>Catalogue</h1>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            <a class="nav-link" href="#!/search">Search</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#!/createNew">Create New</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#!/bookmarks">Bookmarks</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="#!/topHits">Top Hits</a>
+        </li>
+    </ul>
     <div ng-view></div>
-
-</div>
+    </div>
 </body>
+
 </html>
