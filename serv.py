@@ -57,5 +57,15 @@ def catalogue_add_data():
         fw.write(output_data)
     return json.dumps({"Result": "OK"})
 
+@app.route("/catalogue/addBookmarks", methods=["POST"])
+@cross_origin()
+def catalogue_add_bookmarks():
+    output_data = ""
+    for entry in request.data.split('","')[1:-1]:
+        output_data += (entry + "\n")
+    with open("bookmarks/bookmarks.txt", "w") as fw:
+        fw.write(output_data)
+    return json.dumps({"Result": "OK"})
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=7880)
