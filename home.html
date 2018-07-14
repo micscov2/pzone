@@ -16,8 +16,12 @@
 </head>
 
 <body ng-app="myApp">
-    <h1>Catalogue</h1>
-    <ul class="nav nav-pills">
+    <div class="jumbotron text-center" text-center>
+        <h1 class="display-5">Catalogue Engine</h1>
+        <hr class="my-4">
+        <p>Note maker, note taker, note searcher and much nore...</p>
+    </div>
+    <ul class="nav nav-pills nav-justified">
         <li class="nav-item">
             <a class="nav-link" href="#!/search">Search</a>
         </li>
@@ -28,11 +32,12 @@
             <a class="nav-link" href="#!/bookmarks">Bookmarks</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#!/topHits">Top Hits</a>
+            <a class="nav-link" href="#!/topHits">Top Hits</a>
         </li>
     </ul>
+    <br />
+    <br />
     <div ng-view></div>
-    </div>
 </body>
 
 </html>

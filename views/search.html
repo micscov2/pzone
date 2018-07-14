@@ -1,6 +1,24 @@
-<div>
-        <input type="text" ng-model="textData" /><button ng-click="searchClicked()">search!</button>
-        <br /> {{pzk}}
-        <p ng-bind="resultRecv1"></p>
-        <p ng-bind="resultRecv2"></p>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>Search</h2>
+            <h5>keywords, snippets etc</h5>
+            <p>Returns filename and string matched</p>
+            <hr class="hidden-sm hidden-md hidden-lg">
+        </div>
+        <div class="col-sm-9">
+            <div>
+                <h2>
+        <input type="text" ng-model="textData" /><button ng-click="searchClicked()">search!</button></h2>
+                <br />
+                <hr />
+                <br />
+                <h5>
+        <ul class="list-group">
+  			<li class="list-group-item"  ng-repeat="record in records">{{record}}</li>
+		</ul></h5>
+            </div>
+            <div class="col-sm-1">
+            </div>
+        </div>
+    </div>
