@@ -1,3 +1,24 @@
-<div>
-        {{pzk}} createNew
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <h2>Create New</h2>
+            <h5>Add new notes</h5>
+            <p></p>
+            <hr class="hidden-sm hidden-md hidden-lg">
+        </div>
+        <div class="col-sm-9">
+            <h4>
+            <div class="form-group" data-ng-repeat="item in items">
+                <label for="item" ng-show="showitemLabel(item)">items</label>
+                <input size="60" type="text" ng-modal="{{item.name}}" name="" placeholder="Note..." id="{{item.id}}">
+                <button ng-click="removeNewitem(item)">-</button>
+            </div>
+            <button ng-click="addNewitem()">+</button>
+            </h4>
+            <!-- Fix putting href in here -->
+            <button ng-click="saveToFile()" aria-pressed="true">Save to File</button>
+            <p>**Unless modal support comes, filenames are taken from system timestamps</p>
+        </div>
+    </div>
+   
 </div>

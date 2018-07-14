@@ -1,8 +1,11 @@
 import os
 import sys
-from flask import Flask
+from flask import Flask, request
+import datetime
 from flask_cors import cross_origin
 import json
+
+ep = datetime.datetime(1970,1,1,0,0,0)
 
 def get_matching_line(user_input):
     output = {}
@@ -34,6 +37,25 @@ def catalogue_search_data(user_input):
     num, res = get_matching_line(user_input)
     print("Number of records: {}".format(num))
     return json.dumps(res)
+
+@app.route("/catalogue/addNew", methods=["POST"])
+@cross_origin()
+def catalogue_add_data():
+    print(json.dumps(request.data))
+    output_data = ""
+    filename = str((datetime.datetime.utcnow()- ep).total_seconds()) + ".txt"
+    for entry in request.data[1:-1].split(","):
+        key, value = entry.split(":")
+        key = key[1:-1]
+        value = value[1:-1]
+        if key != "filename": 
+            output_data += (value + "\n")
+        else:
+            if value != "SYSTEM_TAKEN":
+                filename = value
+    with open("data/fx/" + filename, "w") as fw:
+        fw.write(output_data)
+    return json.dumps({"Result": "OK"})
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=7880)
