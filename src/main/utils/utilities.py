@@ -2,6 +2,7 @@ import configparser
 
 from main.utils.constants import Constants
 
+
 class Registry(object):
     entries = {}
 
@@ -15,5 +16,11 @@ class PzoneConfigParser(object):
         self.config_parser.read(filename)
 
 
-if Registry.entries.get(Constants.CONFIGPARSER) is None:
-    Registry.entries[Constants.CONFIGPARSER] = PzoneConfigParser("pzone.properties")
+def get_registered_obj(name):
+    return Registry.entries.get(name)
+
+def set_registered_obj(name, value):
+    if Registry.entries.get(name) is None:
+        Registry.entries[name] = value
+
+set_registered_obj(Constants.CONFIGPARSER, PzoneConfigParser("../pzone.properties"))

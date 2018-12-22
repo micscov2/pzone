@@ -2,7 +2,7 @@
 
 Guarantee
 ---------
-Search in 10,000,000 notes with noticeable delay
+Search in 10,000,000 notes with un-noticeable delay
 
 Components
 ----------
