@@ -13,9 +13,20 @@ class MongoDBConnection(object):
         
 class MongoDataManager(object):
     @staticmethod
-    def get_notes(**kwargs):
+    def get_notes(subj_name, term):
         conn = get_registered_obj(Constants.DBCONNECTION).connection
 
-        return conn.pzone_data.notes.find_one()
+        all_lines = conn.pzone_data.notes.find({Constants.SUBJECT_STR: subj_name})
+        for line in all_lines:
+            if term in line[Constants.LINE_STR]:
+                return line
+
+        return {}
+
+    @staticmethod
+    def add_notes(data):
+        conn = get_registered_obj(Constants.DBCONNECTION).connection
+    
+        conn.pzone_data.notes.insert(data)
 
 set_registered_obj(Constants.DBCONNECTION, MongoDBConnection())

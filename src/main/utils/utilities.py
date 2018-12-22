@@ -15,6 +15,11 @@ class PzoneConfigParser(object):
         self.config_parser = configparser.ConfigParser()
         self.config_parser.read(filename)
 
+def filter_only_real_aphab(input_str):
+    input_str = input_str.replace("\n", "")
+    input_str = input_str.replace("\t", "")
+
+    return input_str
 
 def get_registered_obj(name):
     return Registry.entries.get(name)

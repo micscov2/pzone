@@ -8,4 +8,6 @@ class Constants:
     MONGODB = "MONGODB"
     
     CONFIGPARSER = "CONFIGPARSER"
-    
+
+    LINE_STR = "line"
+    SUBJECT_STR = "subject"
