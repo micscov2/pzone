@@ -1,2 +1,7 @@
 *.pyc
 externals_deps/*
+src/views/jss/angular-route.js
+src/views/jss/angular.js
+src/views/jss/bootstrap.min.js
+src/views/css/bootstrap.min.css
+installer/nginx.pid
