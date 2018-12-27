@@ -12,6 +12,8 @@ with open(filename) as fp:
     for lines in fp.readlines():
         if len(lines) > 2:
             for line in lines.split("."):
+                if len(line) < 10:
+                    continue
                 line = line.replace('"', 'DOUBLE_QUOTE').replace("'", 'SINGLE_QUOTE')
                 requests.post("http://localhost:7880/pzone/v1/add", json={
                             "subject": subj_name,

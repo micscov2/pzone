@@ -11,11 +11,15 @@ myApp.controller('SearchController', ['$scope', '$http', function($scope, $http)
 
     var successResponseHandler = function(response) {
         $scope.records = [];
+        localCache = {}
         for (var i = 0; i < response.data.length; i++) {
             lineData = response.data[i]['line'];
             lineData = lineData.replace(/DOUBLE_QUOTE/g, '"')
                                .replace(/SINGLE_QUOTE/g, "'")
-            $scope.records.push(lineData);
+            if (localCache[lineData] == undefined) {
+                $scope.records.push(lineData);
+                localCache[lineData] = 1
+            }
         }
         $scope.totalRecords = $scope.records.length;
     };
