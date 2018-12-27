@@ -3,14 +3,14 @@
         <div class="col-sm-3">
             <h2>Search</h2>
             <h5>keywords, snippets etc</h5>
-            <p>Returns filename and string matched</p>
+            <p>Returns notes which are matched exactly and as well as similar notes (coming soon)</p>
             <hr class="hidden-sm hidden-md hidden-lg">
         </div>
         <div class="col-sm-9">
             <div>
-                <h2><input type="text" ng-model="subject" />Subject</h2>
-                <h2>
-        <input type="text" ng-model="textData" /><button ng-click="searchClicked()">search!</button></h2>
+                <div style="margin-bottom: 10px;" ><input size="30" class="rounded" type="text" style="box-shadow: 1px 1px; font-family: Verdana; font-size:18px; padding-top: 3px; padding-bottom: 3px ;" ng-model="subject" /> Subject</div>
+                <div>
+        <input type="text" class="rounded" size="30" style="box-shadow: 1px 1px; font-family: Verdana; font-size:18px; padding-top: 3px; padding-bottom: 3px ;" ng-model="textData" /> <button ng-click="searchClicked()"> search!</button></div>
                 <br /> 
 <!--<button ng-click="saveSelectedBookmarks()">Save Bookmarks!</button>--> 
             Total records: {{totalRecords}}
@@ -18,7 +18,7 @@
                 <br />
                 <h5>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="record in records">
+            <li style="font-family: Helvetica; font-size: 14pt; " class="list-group-item" ng-repeat="record in records">
 
 <!--<input type="checkbox" ng-click="saveBookMark(record)"> 
     -->
