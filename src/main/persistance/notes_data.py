@@ -16,17 +16,27 @@ class MongoDataManager(object):
     def get_notes(subj_name, term):
         conn = get_registered_obj(Constants.DBCONNECTION).connection
 
-        all_lines = conn.pzone_data.notes.find({Constants.SUBJECT_STR: subj_name})
+        all_lines = conn.pzone_data.notes.find(
+                            {Constants.SUBJECT_STR: subj_name},
+                            projection={'_id': False, 'subject': False}
+                    )
+
+        desired_lines = []
         for line in all_lines:
             if term in line[Constants.LINE_STR]:
-                return line
+                desired_lines.append(line)
 
-        return {}
+        return desired_lines
 
     @staticmethod
     def add_notes(data):
         conn = get_registered_obj(Constants.DBCONNECTION).connection
-    
+
+        seq_obj = conn.pzone_data.counter_pzone.find_and_modify(
+                        query={'_id': 'item_id'}, 
+                        update={'$inc': {'sequence_value': 1}})    
+        data['_id'] = int(seq_obj['sequence_value'])
+
         conn.pzone_data.notes.insert(data)
 
 set_registered_obj(Constants.DBCONNECTION, MongoDBConnection())

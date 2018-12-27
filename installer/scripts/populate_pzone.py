@@ -9,9 +9,11 @@ filename = sys.argv[1]
 subj_name = sys.argv[2]
 
 with open(filename) as fp:
-    for line in fp.readlines():
-        if len(line) > 2:
-            requests.post("http://localhost:7880/pzone/v1/add", json={
+    for lines in fp.readlines():
+        if len(lines) > 2:
+            for line in lines.split("."):
+                line = line.replace('"', 'DOUBLE_QUOTE').replace("'", 'SINGLE_QUOTE')
+                requests.post("http://localhost:7880/pzone/v1/add", json={
                             "subject": subj_name,
                             "line": line
                             }

@@ -1,4 +1,7 @@
-from flask import Blueprint, request
+import json
+
+from flask import Blueprint, request, Response
+from flask_cors import cross_origin
 
 from main.persistance.notes_data import MongoDataManager
 from main.utils.utilities import filter_only_real_aphab
@@ -7,12 +10,12 @@ from main.utils.constants import Constants
 notes_apis = Blueprint('notes_apis', __name__)
 
 @notes_apis.route('/search/<subj_name>')
+@cross_origin()
 def get_notes(subj_name):
     term = request.args.get('term') 
 
-    return str(MongoDataManager.get_notes(subj_name, term))
-
-
+    return json.dumps(MongoDataManager.get_notes(subj_name, term))
+    
 @notes_apis.route('/add', methods=['POST'])
 def add_notes():
     data = request.get_json()

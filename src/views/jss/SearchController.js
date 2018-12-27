@@ -1,5 +1,3 @@
-//var myApp = angular.module('myApp');
-
 // Angular Js lessons
 // ng-bind binds $scope -> view
 // ng-model is two way binding $scope <--> view
@@ -10,21 +8,18 @@ myApp.controller('SearchController', ['$scope', '$http', function($scope, $http)
     $scope.records = [];
     $scope.totalRecords = 0;
     $scope.selectedBookMarks = [];
-    var successResponseHandler = function(response) {
-        // $scope.records = [response.data.split(":->:")];
-        $scope.records = [];
-        for (var property in response.data) {
-            if (!response.data.hasOwnProperty(property)) {
-                continue;
-            }
 
-            filename = response.data[property];
-            $scope.records.push(filename + " -> " + property);
+    var successResponseHandler = function(response) {
+        $scope.records = [];
+        for (var i = 0; i < response.data.length; i++) {
+            lineData = response.data[i]['line'];
+            lineData = lineData.replace(/DOUBLE_QUOTE/g, '"')
+                               .replace(/SINGLE_QUOTE/g, "'")
+            $scope.records.push(lineData);
         }
         $scope.totalRecords = $scope.records.length;
-        // $scope.resultRecv2 = response.data.split(":->:")[1]
-        // Check why x, y = a.split("") doesn't work
     };
+
     var successResponseHandlerBookmarks = function(response) {
         console.log(response);
         $scope.selectedBookMarks = [];
@@ -35,9 +30,13 @@ myApp.controller('SearchController', ['$scope', '$http', function($scope, $http)
     };
 
     $scope.searchClicked = function() {
+        subject = $scope.subject;
         userInput = $scope.textData;
-        $http.get("http://pzone:7880/catalogue/search/" + userInput)
-            .then(successResponseHandler, errorResponseHandler);
+        $http.get("http://127.0.0.1:7880/pzone/v1/search/" 
+                    + subject 
+                    + "?term=" 
+                    + userInput)
+                    .then(successResponseHandler, errorResponseHandler);
     };
 
     $scope.saveBookMark = function(record) {

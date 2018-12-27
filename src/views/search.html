@@ -8,14 +8,21 @@
         </div>
         <div class="col-sm-9">
             <div>
+                <h2><input type="text" ng-model="subject" />Subject</h2>
                 <h2>
         <input type="text" ng-model="textData" /><button ng-click="searchClicked()">search!</button></h2>
-                <br /> <button ng-click="saveSelectedBookmarks()">Save Bookmarks!</button> Total records: {{totalRecords}}
+                <br /> 
+<!--<button ng-click="saveSelectedBookmarks()">Save Bookmarks!</button>--> 
+            Total records: {{totalRecords}}
                 <hr />
                 <br />
                 <h5>
         <ul class="list-group">
-            <li class="list-group-item" ng-repeat="record in records"><input type="checkbox" ng-click="saveBookMark(record)"> {{record}}</li>
+            <li class="list-group-item" ng-repeat="record in records">
+
+<!--<input type="checkbox" ng-click="saveBookMark(record)"> 
+    -->
+{{record}}</li>
         </ul></h5>
             </div>
             <div class="col-sm-1">
